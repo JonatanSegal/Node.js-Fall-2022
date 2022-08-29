@@ -7,3 +7,13 @@ console.log(totalPrice);
 
 const balanceEquals = total === totalPrice;
 console.log(balanceEquals)
+
+const cat = {
+    key:"Value",
+    name:"Tom",
+}
+
+//Square bracket notation
+console.log(cat["name"]);
+//dot notation 
+console.log(cat.name);
