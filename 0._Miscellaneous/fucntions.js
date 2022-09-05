@@ -23,14 +23,20 @@ const addArrowFunctionCompact = (a ,b) => a + b;
 
 console.log(addAnonymousFunction(3,6));
 
-function genericActionExecutor(anyeCallBackFunction,name){
+function genericActionExecutor(anyCallBackFunction,name){
     // execute some code...
-    return anyeCallBackFunction(name);
+    return anyCallBackFunction(name);
 }
 
 const spitting = (name) => `${name} is spitting.`;
 
+console.log(genericActionExecutor(spitting,"Amanda"));
 
-console.log(genericActionExecutor(spitting,"Amanda"))
+//task create a funciton that allows Malte to shoot and call it.
+//task result should be: Malte is shooting.
+const shooting = (person) => `${person} is shooting`;
 
+console.log(genericActionExecutor(shooting,"Malte"));
 
+//Create a SINGLE statement below that console log "Murat" is running away;
+console.log(genericActionExecutor((name) => `${name} is running away`,"Murat"))
