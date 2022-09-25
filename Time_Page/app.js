@@ -12,6 +12,8 @@ app.get("/", (req, res) => {
 
 
 app.listen(8080, (error) => {
+    if(error){
     console.log("Error:", error)
+    }
     console.log("Server is running on port:", 8080)
 })
