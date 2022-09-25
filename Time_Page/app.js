@@ -1,7 +1,8 @@
-import express from "express";
-import path from "path";
+import express from "express"
+import path from "path"
 
-const app = express();
+const app = express()
+const port = 8080
 
 app.use(express.static("public"));
 
@@ -11,9 +12,9 @@ app.get("/", (req, res) => {
 })
 
 
-app.listen(8080, (error) => {
+app.listen(port, (error) => {
     if(error){
     console.log("Error:", error)
     }
-    console.log("Server is running on port:", 8080)
+    console.log("Server is running on port:", port)
 })
