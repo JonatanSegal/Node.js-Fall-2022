@@ -13,8 +13,6 @@ app.get("/", (req, res) => {
 
 
 app.listen(port, (error) => {
-    if(error){
     console.log("Error:", error)
-    }
     console.log("Server is running on port:", port)
 })
