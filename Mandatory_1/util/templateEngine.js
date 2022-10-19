@@ -1,7 +1,7 @@
-import fs from "fs";
+import fs from "fs"
 
-const navbarComponent = fs.readFileSync("./public/components/navbar/navbar.html").toString();
-const footerComponent = fs.readFileSync("./public/components/footer/footer.html").toString();
+const navbarComponent = fs.readFileSync("./public/components/navbar/navbar.html").toString()
+const footerComponent = fs.readFileSync("./public/components/footer/footer.html").toString()
 
 export function renderPage(path, options = {}) {
     const page = fs.readFileSync("./public/pages"+path).toString();
@@ -11,6 +11,7 @@ export function renderPage(path, options = {}) {
         .replace("%%PAGE_CSS_LINK%%",
             options.cssLink || ""
         ) 
-        + page
+        + page.replace("%%PAGE_CONTENT%%", options.content || "")
         + footerComponent;
 }
+
