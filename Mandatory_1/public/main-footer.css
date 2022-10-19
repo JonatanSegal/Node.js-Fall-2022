@@ -1,0 +1,7 @@
+main {
+    min-height: calc(100vh - 10vh);
+}
+
+footer {
+    height: 4vh;
+}

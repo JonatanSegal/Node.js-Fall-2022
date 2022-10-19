@@ -4,11 +4,15 @@ const app = express();
 app.use(express.static("public"));
 
 
+import { renderPage } from "./util/templateEngine.js";
 
+const homepagePage = renderPage("/homepage/homepage.html",{
+    tabTitle: "Node-mandatory"
+});
 
-
-
-
+app.get("/", (req, res) => {
+    res.send(homepagePage);
+});
 
 
 
