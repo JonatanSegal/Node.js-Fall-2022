@@ -3,5 +3,7 @@ main {
 }
 
 footer {
+    text-align: right;
+    padding-right: 5px;
     height: 4vh;
 }
