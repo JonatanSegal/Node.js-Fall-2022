@@ -23,6 +23,14 @@ const renderingPage = renderPage("/content/content.html",{
     tabTitle: documentation[2].titleName,
     content: documentation[2].text
 })
+const loginPage = renderPage("/login/login.html",{
+    tabTitle:"Login-page"
+})
+
+const signupPage = renderPage("/signup/signup.html",{
+    tabTitle:"Sign up-page"
+})
+
 
 app.get("/", (req, res) => {
     res.send(homepagePage)
@@ -35,6 +43,15 @@ app.get("/express", (req, res) => {
 app.get("/rendering", (req, res) => {
     res.send(renderingPage)
 })
+
+app.get("/login", (req, res) => {
+    res.send(loginPage)
+})
+
+app.get("/sign-up", (req, res) => {
+    res.send(signupPage)
+})
+
 
 
 
