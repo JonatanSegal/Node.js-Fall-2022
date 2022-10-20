@@ -30,6 +30,9 @@ const loginPage = renderPage("/login/login.html",{
 const signupPage = renderPage("/signup/signup.html",{
     tabTitle:"Sign up-page"
 })
+const editPage = renderPage("/edit-documentation/edit.html",{
+    tabTitle:"Edit-page"
+})
 
 
 app.get("/", (req, res) => {
@@ -52,7 +55,13 @@ app.get("/sign-up", (req, res) => {
     res.send(signupPage)
 })
 
+app.get("/edit", (req, res) => {
+    res.send(editPage)
+})
 
+app.get("/api/documentation", (req, res) => {
+    res.send(documentation)
+})
 
 
 
