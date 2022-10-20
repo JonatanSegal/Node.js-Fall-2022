@@ -64,12 +64,28 @@ app.get("/api/documentation", (req, res) => {
 })
 
 app.get("/api/documentation/:id", (req, res) => {
-    const foundDocumentationText = documentation.find(documentation => documentation.id === Number(req.params.id))
-    console.log(foundDocumentationText)
-    res.send(foundDocumentationText)
+    const documentationTextToEdit = documentation.find(documentation => documentation.id === Number(req.params.id))
+    console.log(documentationTextToEdit)
+    res.send(documentationTextToEdit)
 })
 
-
+app.patch("/api/documentation/:id", (req, res) => {
+   /* 
+    const foundDocumentation = documentation.find(doc => doc.id === Number(req.params.id))
+    documentation.find(doc => doc.id === Number(req.params.id)).text = req.body.text
+    console.log(foundDocumentation.text)
+    res.send({ data: documentation })
+   /* const foundIndex = documentation.findIndex(documentation => documentation.id === Number(req.params.id))
+    if(foundIndex !== -1){
+        const foundDocumentation = documentation[foundIndex]
+        const documentationToUpdate = {...foundDocumentation, ...req.body, id: Number(req.params.id) }
+        documentation[foundIndex] = documentationToUpdate
+        res.send({data: documentation})
+    }else {
+        res.status(404).send({ data: undefined, message: `No documentation mfound by id: ${req.params.id}` });
+    }  
+    */
+})
 
 
 

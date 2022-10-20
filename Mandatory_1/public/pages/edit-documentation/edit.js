@@ -1,8 +1,6 @@
 document.getElementById("page-select").onchange = updateTextarea
 const selectOptions = document.getElementById("page-select")
-
-
-
+const editButton = document.getElementById("edit-btn").addEventListener("click", updateDoc)
 
 fetch("http://localhost:8080/api/documentation")
     .then(response => response.json())
@@ -23,3 +21,20 @@ fetch("http://localhost:8080/api/documentation")
         textArea.innerText = result.text
     })
  }   
+
+ function updateDoc(){
+    let selectValue = selectOptions.value
+    let textArea = document.getElementById("textArea")
+    fetch("http://localhost:8080/api/documentation/"+selectValue,{
+        method: "PATCH",
+        body: JSON.stringify({
+            text: textArea.innerText
+        }), 
+        headers: {
+            "Content-type": "application/json",
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        },
+    })
+    console.log(textArea.innerText)
+}
