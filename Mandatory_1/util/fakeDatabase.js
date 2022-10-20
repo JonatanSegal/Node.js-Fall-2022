@@ -6,7 +6,7 @@ export let users = [{
 
 export let documentation =[
     {
-        id:"0",
+        id: 0,
         titleName:"Home-page",
         text:`
         <h2>Node.js</h2>
@@ -16,7 +16,7 @@ export let documentation =[
         `
     },
     {
-        id:"1",
+        id: 1,
         titleName:"Express-page",
         text:`
         <h2>Express framework</h2>
@@ -24,7 +24,7 @@ export let documentation =[
         `
     },
     {
-        id:"2",
+        id: 2,
         titleName:"Rendering-page",
         text:`
         <h2>Rendering</h2>

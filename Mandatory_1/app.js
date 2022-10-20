@@ -63,6 +63,11 @@ app.get("/api/documentation", (req, res) => {
     res.send(documentation)
 })
 
+app.get("/api/documentation/:id", (req, res) => {
+    const foundDocumentationText = documentation.find(documentation => documentation.id === Number(req.params.id))
+    console.log(foundDocumentationText)
+    res.send(foundDocumentationText)
+})
 
 
 

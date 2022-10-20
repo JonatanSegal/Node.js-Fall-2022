@@ -14,5 +14,12 @@ fetch("http://localhost:8080/api/documentation")
     })
 
  function updateTextarea(){
+    let selectValue = selectOptions.value
     let textArea = document.getElementById("textArea")
+    fetch("http://localhost:8080/api/documentation/"+selectValue)
+    .then(response => response.json())
+    .then(result =>{
+        console.log(result)
+        textArea.innerText = result.text
+    })
  }   
