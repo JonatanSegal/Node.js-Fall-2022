@@ -18,23 +18,35 @@ fetch("http://localhost:8080/api/documentation")
     .then(response => response.json())
     .then(result =>{
         console.log(result)
+        console.log(selectValue)
         textArea.innerText = result.text
+        console.log(textArea.value)
     })
  }   
 
  function updateDoc(){
     let selectValue = selectOptions.value
     let textArea = document.getElementById("textArea")
+    console.log(selectValue)
     fetch("http://localhost:8080/api/documentation/"+selectValue,{
         method: "PATCH",
         body: JSON.stringify({
-            text: textArea.innerText
+            text: textArea.value
         }), 
         headers: {
             "Content-type": "application/json",
             "Accept": "application/json",
-            "Access-Control-Allow-Origin": "*"
         },
     })
-    console.log(textArea.innerText)
+    .then(res =>{
+        if(!res.ok){
+            return Promise.reject("Error: " + res.status)
+        }
+        return res.json()})
+    .then(reloadPage)
+}
+
+
+function reloadPage(){
+    window.location.reload()
 }

@@ -1,3 +1,6 @@
+import fs from "fs"
+const DATABASEPATH = "util/database.json"
+
 export let users = [{
         id:0,
         name: "TestUser",
@@ -65,6 +68,13 @@ export let documentation =[
     }
 ]
 
+export function getDoc(){
+    return JSON.parse(fs.readFileSync(DATABASEPATH))
+}
+
+export function saveDoc(docText){
+    fs.writeFileSync(DATABASEPATH,JSON.stringify(docText))
+}
 
 export function getUser(email) {
     const foundUser = users.find(user => user.email === email)   

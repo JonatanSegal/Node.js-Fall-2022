@@ -1,0 +1,17 @@
+[
+    {
+        "id": 0,
+        "titleName": "Home-page",
+        "text": "\n        <h2>JavaScript</h2>\n        <p>\n        JavaScript is a dynamic computer programming language. \n        <br>In dynamically typed languages, type checks is performed during runtime, meaning that you can assign multiple things to the same variable.\n        <br><figure class=\"figure\"><img class=\"figure-img img-fluid rounded\" src=\"../components/images/DynamicType.png\"></figure>\n        </p>\n        \n        <h2>Node.js</h2>\n        <p>Node.js is an open-source, JavaScript runtime environment, that uses chromes V8 JavaScript engine to make it possible to run network applications using JavaScript.\n        <br>To run a Node application you run the following command: <br><i>node [JavaSript file name]</i><br>Usually the script is called app.js</p>\n        \n        <h4>Package.json</h4>\n        <p>Package.json is a fundamental part of Node.js ecosystem, package.json is used to store metadata about the project as well as a list of dependencies and scripts.\n        <br>Example of how a package.json might look:\n        <br><figure class=\"figure\"><img class=\"figure-img img-fluid rounded\" src=\"../components/images/jsonpackage.png\"></figure>\n\n        <br><b>Meta data:</b> is data about the application, e.g. \"name\" or \"type\".\n\n        <br><b>Dependencies:</b> can be a code library or a package that is needed for the node application to work. When typing <i>npm install</i> in the terminal, package.json is scanned and the relevant files are installed/downloaded.\n        <br>In the picture above we see a <i>key:value</i> pair under dependencies, this indicates that the application uses <i><a href=\"express\" class=\"link-primary\">express</a></i> since that is the key, the value is the number that indicates what version of express the application uses.\n        \n        <br><b>Scripts:</b> are custom scripts that can be define. \n        <br>In this project under the scripts section there is a script called <i>\"start-prod\"</i>, so when <i>npm run start-prod</i> is run in the console, it runs <i>node app.js</i>.\n        </p>\n\n        <h2>Nodemon</h2>\n        <p>nodemon is a tool that helps develop Node.js based applications by automatically restarting the node application when certain files are changed depending on what nodemon is supposed to look out for.\n        <br>Nodemon does not change the way you have to code/develop node applications. \n        <br>In order to use nodemon we have to change the command for when running a node application: \n        <br><b>Command without using nodemon:</b> <i>node [JavaSript file name]</i></b>\n        <br><b>Command line when using nodemon:</b> <i>nodemon [JavaSript file name]</i></p>\n        "
+    },
+    {
+        "id": 1,
+        "titleName": "Express-page",
+        "text": "<h2>Express framework</h2>        <p>TEST</p>    "
+    },
+    {
+        "id": 2,
+        "titleName": "Rendering-page",
+        "text": "\n        <h2>Rendering</h2>\n        <h3>Server side rendering</h3>\n        <p>TODO</p>\n        <h3>Client side rendering</h3>\n        <p>TODO</p>\n        "
+    }
+]

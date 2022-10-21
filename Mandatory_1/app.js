@@ -1,10 +1,9 @@
 import express from "express"
-import { users ,documentation, getUser } from "./util/fakeDataBase.js"
-//import bodyParser from "body-parser" // Maybe needed for login process
+import { users ,documentation, getUser ,getDoc,saveDoc} from "./util/fakeDataBase.js"
 const app = express()
 
 app.use(express.static("public"))
-//app.use(bodyParser.json) // Maybe needed for login process
+app.use(express.json())
 
 
 import { renderPage } from "./util/templateEngine.js"
@@ -60,7 +59,7 @@ app.get("/edit", (req, res) => {
 })
 
 app.get("/api/documentation", (req, res) => {
-    res.send(documentation)
+    res.send(getDoc())
 })
 
 app.get("/api/documentation/:id", (req, res) => {
@@ -70,21 +69,18 @@ app.get("/api/documentation/:id", (req, res) => {
 })
 
 app.patch("/api/documentation/:id", (req, res) => {
-   /* 
-    const foundDocumentation = documentation.find(doc => doc.id === Number(req.params.id))
-    documentation.find(doc => doc.id === Number(req.params.id)).text = req.body.text
-    console.log(foundDocumentation.text)
-    res.send({ data: documentation })
-   /* const foundIndex = documentation.findIndex(documentation => documentation.id === Number(req.params.id))
+    let docToPatch = getDoc()
+    const foundIndex = getDoc().findIndex(documentation => documentation.id === Number(req.params.id))
+    console.log(foundIndex)
     if(foundIndex !== -1){
         const foundDocumentation = documentation[foundIndex]
-        const documentationToUpdate = {...foundDocumentation, ...req.body, id: Number(req.params.id) }
-        documentation[foundIndex] = documentationToUpdate
-        res.send({data: documentation})
+        const documentationToUpdate = {...foundDocumentation, ...req.body}
+        docToPatch[foundIndex] = documentationToUpdate
+        saveDoc(docToPatch)
+        res.send({data: documentationToUpdate})
     }else {
         res.status(404).send({ data: undefined, message: `No documentation mfound by id: ${req.params.id}` });
     }  
-    */
 })
 
 
