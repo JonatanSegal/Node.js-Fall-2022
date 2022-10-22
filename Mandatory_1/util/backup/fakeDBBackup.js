@@ -4,7 +4,7 @@ const EDITDATABASEPATH = "util/editDatabase.json"
 export let users = [{
         name: "TestUser",
         email: "test@email.com",
-        password: "test123"
+        password: "test123",
     }]
 
 export let documentation =[

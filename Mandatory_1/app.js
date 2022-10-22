@@ -1,6 +1,7 @@
 import express from "express"
 import docRouter from "./routers/documentationRouter.js"
 import { users ,documentation} from "./util/fakeDataBase.js"
+import { checkUserExists, findUserByEmail } from "./util/userService.js"
 const app = express()
 
 app.use(express.static("public"))
@@ -56,6 +57,34 @@ app.get("/sign-up", (req, res) => {
 
 app.get("/edit", (req, res) => {
     res.send(editPage)
+})
+
+app.get("/users",(req, res) => {
+    res.send(users)
+})
+
+app.post("/sign-up", (req, res) => {
+    if(checkUserExists(users, req.body.email) === false) {
+        users.push(req.body)
+        console.log("User created")
+        res.redirect("/")
+    } else {
+        console.log("User already exists")
+        res.redirect("/sign-up")
+    }
+})
+
+app.post("/login", (req, res) => {
+    if(checkUserExists(users, req.body.email) === true) {
+        const loginUser = findUserByEmail(req.body.email)
+        if(loginUser.password === req.body.password) {
+            console.log("Login successful")
+            res.redirect("/")
+        }
+    } else {
+        console.log("User doesn't exist")
+        res.redirect("/login")
+    }
 })
 
 const PORT = process.env.PORT || 8080
