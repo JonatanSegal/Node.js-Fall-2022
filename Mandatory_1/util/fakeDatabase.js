@@ -2,11 +2,9 @@ import fs from "fs"
 const EDITDATABASEPATH = "util/editDatabase.json"
 
 export let users = [{
-        id:0,
         name: "TestUser",
         email: "test@email.com",
         password: "test123",
-        role:"ADMIN"
     }]
 
 export let documentation =[
@@ -40,7 +38,7 @@ export let documentation =[
         <br><b>Meta data:</b> is data about the application, e.g. "name" or "type".
         <br>By having <i>"type":"model"</i> in package.json, makes it so files ending with <i>.js</i> will be loaded in as ES modules by Node. This means that we now have to use the import syntax instead of require.
 
-        <br><b>Dependencies:</b> can be a code library or a package that is needed for the node application to work. When typing <i>npm install</i> in the terminal, package.json is scanned and the relevant files are installed/downloaded.
+        <br><b>Dependencies:</b> can be a code library or a package that is needed for the node application to work. When typing <b><i>npm install [package.json]</i></b> in the terminal, package.json is scanned and the relevant files are installed/downloaded.
         <br>In the picture above we see a <i>key:value</i> pair under dependencies, this indicates that the application uses <i><a href="express" class="link-primary">express</a></i> since that is the key, the value is the number that indicates what version of express the application uses.
         
         <br><b>Scripts:</b> are custom scripts that can be define. 
@@ -93,7 +91,18 @@ export let documentation =[
         </p>
         <h5>express.Router</h5>
         <p>
-        In express it is possible to create your own router using the express.Router class.
+        In express it is possible to create your own router using the express.Router function. 
+        This is done by creating a separate JavaSript file and importing <i>Router</i> from express, 
+        then define some routes it should use after that export it so it can be used by the main app.
+        <br><figure class="figure">
+        <figcaption class="figure-caption">Documentaion router:</figcaption>
+        <img class="figure-img img-fluid rounded" src="../components/images/docRouter.png">
+        </figure>
+        <br><figure class="figure">
+        <figcaption class="figure-caption">app.js import and use of router:</figcaption>
+        <img class="figure-img img-fluid rounded" src="../components/images/importAndUseRouter.png">
+        </figure>
+        <br>The app is now able to handle request that are hitting the endpoints in the documentation router.
         </p>
         </p>
         `
@@ -104,9 +113,32 @@ export let documentation =[
         text:`
         <h2>Rendering</h2>
         <h3>Server side rendering</h3>
-        <p>TODO</p>
+        <p>
+        Server side rendering <i>(SSR)</i> is when a user makes a request for a page, the server prepares the necessary data needed and sends it back to the user's machine. 
+        Once the data is received the browser constucts for it to be displayed. 
+        One of the reasons it is prefered to use SSR is because it lets search engines crawl the site for better Search Engine Optimization <i>(SEO)</i>.
+        <br>
+        <figure class="figure">
+        <b>Example of SSR using express:</b>
+        <figcaption class="figure-caption">Imports file sytem <i>(fs)</i> to read the html files.
+        <br> Function that returns the complete string based on path and with option to manipulate that content:</figcaption>
+        <img class="figure-img img-fluid rounded" src="../components/images/ssr.png">
+        </figure>
+        <br><figure class="figure">
+        <figcaption class="figure-caption">Replacing the value tab title and content with data from documentaion:</figcaption>
+        <img class="figure-img img-fluid rounded" src="../components/images/replaceInRender.png">
+        </figure>
+        <br><figure class="figure">
+        <figcaption class="figure-caption">GET request that sends the assembled page:</figcaption>
+        <img class="figure-img img-fluid rounded" src="../components/images/sendHomepage.png">
+        </figure>
+        </p>
         <h3>Client side rendering</h3>
-        <p>TODO</p>
+        <p>
+        Client side rendering is about rendering content in the browser using JavaScript. 
+        This means that instead of receiving a HTML that contains all the content, a bare-bones HTML with JavaScript file is received and the JavaScript is then responsible for rendering the rest of the site using the browser.
+        With Client side rendering the initial page load is/can be a bit slow, however every subsequent page load is extremly fast since communication with the server only happens to get run-time data.
+        </p>
         `
     }
 ]

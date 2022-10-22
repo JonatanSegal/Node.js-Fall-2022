@@ -15,7 +15,6 @@ docRouter.get("/api/documentation/:id", (req, res) => {
 docRouter.patch("/api/documentation/:id", (req, res) => {
     let docToPatch = getDoc()
     const foundIndex = getDoc().findIndex(documentation => documentation.id === Number(req.params.id))
-    console.log(foundIndex)
     if(foundIndex !== -1){
         const foundDocumentation = documentation[foundIndex]
         const documentationToUpdate = {...foundDocumentation, ...req.body}
