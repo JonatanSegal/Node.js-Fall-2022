@@ -1,10 +1,11 @@
 import express from "express"
-import { users ,documentation ,getDoc,saveDoc} from "./util/fakeDataBase.js"
+import docRouter from "./routers/documentationRouter.js"
+import { users ,documentation} from "./util/fakeDataBase.js"
 const app = express()
 
 app.use(express.static("public"))
 app.use(express.json())
-
+app.use(docRouter)
 
 import { renderPage } from "./util/templateEngine.js"
 
@@ -38,16 +39,6 @@ app.get("/", (req, res) => {
     res.send(homepagePage)
 })
 
-app.get("/api/documentation", (req, res) => {
-    res.send(getDoc())
-})
-
-app.get("/api/documentation/:id", (req, res) => {
-    const documentationTextToEdit = documentation.find(documentation => documentation.id === Number(req.params.id))
-    console.log(documentationTextToEdit)
-    res.send(documentationTextToEdit)
-})
-
 app.get("/express", (req, res) => {
     res.send(expressPage)
 })
@@ -67,25 +58,6 @@ app.get("/sign-up", (req, res) => {
 app.get("/edit", (req, res) => {
     res.send(editPage)
 })
-
-app.patch("/api/documentation/:id", (req, res) => {
-    let docToPatch = getDoc()
-    const foundIndex = getDoc().findIndex(documentation => documentation.id === Number(req.params.id))
-    console.log(foundIndex)
-    if(foundIndex !== -1){
-        const foundDocumentation = documentation[foundIndex]
-        const documentationToUpdate = {...foundDocumentation, ...req.body}
-        docToPatch[foundIndex] = documentationToUpdate
-        saveDoc(docToPatch)
-        res.send({data: documentationToUpdate})
-    }else {
-        res.status(404).send({ data: undefined, message: `No documentation mfound by id: ${req.params.id}` });
-    }  
-})
-
-
-
-
 
 const PORT = process.env.PORT || 8080
 

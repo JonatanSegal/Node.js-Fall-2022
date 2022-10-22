@@ -93,7 +93,7 @@ export let documentation =[
         </p>
         <h5>express.Router</h5>
         <p>
-        TODO
+        In express it is possible to create your own router using the express.Router class.
         </p>
         </p>
         `
