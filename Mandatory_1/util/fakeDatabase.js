@@ -29,7 +29,7 @@ export let documentation =[
         <p>Node.js is an open-source, JavaScript runtime environment, that uses chromes V8 JavaScript engine to make it possible to run network applications using JavaScript.
         <br>To run a Node application you run the following command: <br><i>node [JavaSript file name]</i><br>Usually the script is called app.js</p>
         
-        <h4>Package.json</h4>
+        <h5>Package.json</h5>
         <p>Package.json is a fundamental part of Node.js ecosystem, package.json is used to store metadata about the project as well as a list of dependencies and scripts.
         <br>
         <figure class="figure">
@@ -79,15 +79,22 @@ export let documentation =[
         </p>
         <h2>Expess routing/routers</h2>
         <p>Routing is about how an application's endpoint reponse to a request from the client. 
-        In Express a route is done by calling a method that correspond to one of the HTTP methods, 
-        so for a GET requests it would be <i>app.get()</i> and for POST requests <i>app.post</i>
+        <br>In Express a route is done by calling a method on the Express <i>app</i> object, the method has to correspond to one of the HTTP methods, 
+        so for a GET requests it would be <i>app.get()</i> and for POST requests <i>app.post()</i>
         <br><figure class="figure">
         <figcaption class="figure-caption">Simple route:</figcaption>
         <img class="figure-img img-fluid rounded" src="../components/images/SimpleRoute.png">
         </figure>
         <br>
-        <h6>Callback function</h6>
-        <p>A callback or callback function is any reference to executable code that is passed as an argument</p>
+        <h5>Callback function</h5>
+        <p>A callback or callback function is any reference to executable code that is passed as an argument. 
+        <br>This can be seen in the picture above that, when application recieves a request for that endpoint,
+         it calls the callback function that sends a reponse back in this case it is an object containing a message.
+        </p>
+        <h5>express.Router</h5>
+        <p>
+        TODO
+        </p>
         </p>
         `
     },
@@ -112,12 +119,3 @@ export function saveDoc(docText){
     fs.writeFileSync(EDITDATABASEPATH,JSON.stringify(docText))
 }
 
-export function getUser(email) {
-    const foundUser = users.find(user => user.email === email)   
-    if(!foundUser) {
-        alert("User not found");
-    } else {
-        alert("You logged in");
-        return foundUser 
-    }  
-}

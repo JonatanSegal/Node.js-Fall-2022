@@ -1,5 +1,5 @@
 import express from "express"
-import { users ,documentation, getUser ,getDoc,saveDoc} from "./util/fakeDataBase.js"
+import { users ,documentation ,getDoc,saveDoc} from "./util/fakeDataBase.js"
 const app = express()
 
 app.use(express.static("public"))
