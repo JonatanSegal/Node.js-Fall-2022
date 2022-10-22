@@ -38,6 +38,16 @@ app.get("/", (req, res) => {
     res.send(homepagePage)
 })
 
+app.get("/api/documentation", (req, res) => {
+    res.send(getDoc())
+})
+
+app.get("/api/documentation/:id", (req, res) => {
+    const documentationTextToEdit = documentation.find(documentation => documentation.id === Number(req.params.id))
+    console.log(documentationTextToEdit)
+    res.send(documentationTextToEdit)
+})
+
 app.get("/express", (req, res) => {
     res.send(expressPage)
 })
@@ -56,16 +66,6 @@ app.get("/sign-up", (req, res) => {
 
 app.get("/edit", (req, res) => {
     res.send(editPage)
-})
-
-app.get("/api/documentation", (req, res) => {
-    res.send(getDoc())
-})
-
-app.get("/api/documentation/:id", (req, res) => {
-    const documentationTextToEdit = documentation.find(documentation => documentation.id === Number(req.params.id))
-    console.log(documentationTextToEdit)
-    res.send(documentationTextToEdit)
 })
 
 app.patch("/api/documentation/:id", (req, res) => {
