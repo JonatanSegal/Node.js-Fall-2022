@@ -63,7 +63,7 @@ app.get("/users",(req, res) => {
     res.send(users)
 })
 
-//Bugged prints both console.logs
+//Bugged redirects but prints user created 3 times also only saves the new user in memory and not to the fake DB file
 app.post("/sign-up", (req, res) => {
     if(checkUserExists(users, req.body.email) === false) {
         users.push(req.body)
