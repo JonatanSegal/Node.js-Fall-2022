@@ -3,7 +3,7 @@ import docRouter from "./routers/documentationRouter.js"
 import { users ,documentation} from "./util/fakeDataBase.js"
 import { checkUserExists, findUserByEmail } from "./util/userService.js"
 const app = express()
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8080 || 0000
 
 app.use(express.static("public"))
 app.use(express.json())
@@ -90,7 +90,7 @@ app.post("/login", (req, res) => {
     }
 })
 
-const server = app.listen(PORT, "0.0.0.0",(error) => {
+const server = app.listen(PORT,(error) => {
     if (error) {
         console.log(error)
     }
