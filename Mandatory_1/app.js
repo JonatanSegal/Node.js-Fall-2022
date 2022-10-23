@@ -63,6 +63,7 @@ app.get("/users",(req, res) => {
     res.send(users)
 })
 
+//Bugged prints both console.logs
 app.post("/sign-up", (req, res) => {
     if(checkUserExists(users, req.body.email) === false) {
         users.push(req.body)
@@ -74,6 +75,7 @@ app.post("/sign-up", (req, res) => {
     }
 })
 
+//Bugged prints both console.logs and does not redirect correctly
 app.post("/login", (req, res) => {
     if(checkUserExists(users, req.body.email) === true) {
         const loginUser = findUserByEmail(req.body.email)
