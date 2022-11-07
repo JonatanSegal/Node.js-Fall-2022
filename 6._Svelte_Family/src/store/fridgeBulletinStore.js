@@ -1,3 +1,3 @@
-import { writable } from "svelte/store";
+import { writable } from "svelte/store"
 
-export let fridgeMessageStore = writable("Write your message...");
+export let fridgeMessageStore = writable("Write you message...")

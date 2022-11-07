@@ -1,6 +1,6 @@
 <script>
-    import { fridgeMessageStore } from "../../store/fridgeBulletinStore";
-
+    import {fridgeMessageStore} from "../../store/fridgeBulletinStore.js"
+    console.log($fridgeMessageStore)
 </script>
 
 <h3>Family Home</h3>

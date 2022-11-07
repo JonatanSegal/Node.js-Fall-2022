@@ -1,36 +1,43 @@
-'use strict'; //keeps things inside scope
+'use strict';
 
-// Never do this!!!
-//totalGlobalVariable = "Fumi"; // Goes outside of scope
-//var globalVariable = "Fumi"; 
+// Never EVER do this!!!
+// totalGlobalVariable = "Malte";
+// var globalVariable = "Malte";
 
-//New scope
-/*
+// variable decleration
+const me = {
+    name: "Anders"
+};
+const hobbies = [];
+hobbies.push("Music");
+me.hobbies = hobbies;
+console.log(me);
+
+
 {
     let someValue = true;
     {
         let someValue = false;
     }
-    console.log(someValue);
+    // console.log(someValue);
 }
-someValue is true since let is not global and the nested scope gets destroyed after running
-*/
 
-/*
 {
     var someValue = true;
     {
         var someValue = false;
     }
-    console.log(someValue);
+    // console.log(someValue);
 }
-//someValue is false because var is global and goes out side of scope
-*/
 
-//variable decleration
-//Don't use var in for loops since var is global use let instead
-//setTimeout async sleep fuction
+/* for (var i = 0; i < 5; i++) {
+    setTimeout(() => {
+        console.log(i);
+    }, 1000);
+} */
 
-
-
-
+for (let i = 0; i < 5; i++) {
+    setTimeout(() => {
+        console.log(i);
+    }, 1000);
+}

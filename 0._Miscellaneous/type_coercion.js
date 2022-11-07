@@ -1,19 +1,21 @@
-// Type coersion lecture
+// type coersion lecture
 const total = 34.32;
 const price = 12.32;
 
-const totalPrice = total + price;
-console.log(totalPrice);
+const newTotal = total + price;
+console.log(newTotal);
 
-const balanceEquals = total === totalPrice;
-console.log(balanceEquals)
+const balanceEquals = total === newTotal;
+console.log(balanceEquals);
+
 
 const cat = {
-    key:"Value",
-    name:"Tom",
-}
+    key: "value", 
+    name: "Tom"
+};
 
-//Square bracket notation
+// square-bracket notation
 console.log(cat["name"]);
-//dot notation 
+// dot notation
 console.log(cat.name);
+
