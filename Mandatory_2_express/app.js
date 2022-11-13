@@ -27,8 +27,8 @@ const loginLimit = rateLimit({
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
 */
-import signupRouter from "./routers/signupRouter.js"
-app.use(signupRouter)
+import authRouter from "./routers/authRouter.js"
+app.use(authRouter)
 
 
 app.get("*", (req, res) => {

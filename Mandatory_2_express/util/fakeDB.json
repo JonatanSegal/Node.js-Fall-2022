@@ -1,7 +1,1 @@
-[
-    {
-        "name":"Fumi",
-        "email":"Fumi@mail.com",
-        "password":"Fumi123"
-    }
-]
+[{"name":"Fumi","email":"Fumi@mail.com","password":"Fumi123"},{"name":"Fumio","email":"Fumio@email.com","password":"$2b$12$cz207WbhUPTq9aw8v.POGOfK3VV8mvJ.ym08QKYIHyhog86JI9T0u"}]
