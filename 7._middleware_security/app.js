@@ -13,12 +13,10 @@ app.use(session({
   }))
 
 import rateLimit from 'express-rate-limit'
-
 const generalLimiter = rateLimit({
     windowMs: 10 * 60 * 1000,
     max: 80,
 })
-
 app.use(generalLimiter)
 
 const frontdoorLimiter = rateLimit({
