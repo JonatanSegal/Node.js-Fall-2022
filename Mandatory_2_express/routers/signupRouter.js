@@ -18,7 +18,16 @@ router.post("/sign-up", async (req, res) => {
     
     const encryptedpassword = await bcrypt.hash(body.password, saltRounds)
     console.log(encryptedpassword)
-    res.send({message: encryptedpassword})
+    body.password = encryptedpassword
+   
+    const newUser ={...body}
+    console.log(newUser)
+   
+    const updatedDB = getAllUsers()
+    updatedDB.push(newUser)
+    console.log(updatedDB)
+   
+    res.send(getAllUsers())
 })
 
 
