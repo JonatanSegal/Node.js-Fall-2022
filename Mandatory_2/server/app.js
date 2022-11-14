@@ -1,3 +1,5 @@
+import dotenv from "dotenv"
+dotenv.config()
 import express from "express"
 import rateLimit from 'express-rate-limit'
 import session from "express-session"
@@ -5,11 +7,10 @@ import helmet from "helmet"
 
 const app = express()
 
-app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(helmet())
 app.use(session({
-    secret: 'keyboard cat',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
@@ -35,7 +36,7 @@ app.get("*", (req, res) => {
     res.send(`<h1>404</h1><br><h3>Could not find page</h3>`)
 })
 
-const PORT = 8080
+const PORT = 8080 || process.env.PORT
 app.listen(PORT, () => {
     console.log(`APP is running on: ${PORT}`)
 })

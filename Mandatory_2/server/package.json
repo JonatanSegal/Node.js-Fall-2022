@@ -1,5 +1,5 @@
 {
-  "name": "mandatory_2_express",
+  "name": "mandatory_2",
   "version": "0.0.1",
   "description": "express backend for node mandatory 2",
   "main": "app.js",
@@ -18,9 +18,13 @@
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-rate-limit": "^6.6.0",
     "express-session": "^1.17.3",
-    "helmet": "^6.0.0"
+    "helmet": "^6.0.0",
+    "sqlite": "^4.1.2",
+    "sqlite3": "^5.1.2"
   }
 }

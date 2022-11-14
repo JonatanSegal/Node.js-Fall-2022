@@ -1,17 +1,18 @@
 import { Router } from "express"
+import db from "../database/connection.js"
 import bcrypt from "bcrypt"
-import { getAllUsers, findUserByEmail, checkUserExists, saveUser } from "../services/userService.js"
 import { checkIfLoginSession, setLoginSession } from "../services/sessionService.js"
 import session from "express-session"
 
 const saltRounds = 12
 const router = Router()
 
-router.get("/sign-up", (req, res) => {
-    res.send(getAllUsers())
+router.get("/api/sign-up", async (req, res) => {
+    const DATA = await db.all("SELECT * FROM users")
+    res.send(DATA)
 })
 
-router.get("/login", (req, res) => {
+router.get("/api/login", (req, res) => {
     res.send({message: "You are about to login"})
 })
 
@@ -19,10 +20,11 @@ router.get("/authorized", checkIfLoginSession, (req, res , next) => {
     res.send({message: "Welcome to the secret page only for logged in members"})
 })
 
-router.post("/sign-up", async (req, res) => {
+router.post("/api/sign-up", async (req, res) => {
     const body = req.body
-
-    if(checkUserExists(body.email)){
+    const dbEmail = await db.get(`SELECT email FROM users WHERE email = ?`, body.email)
+    console.log(dbEmail.email)
+    if(dbEmail.email === body.email){
         return res.send({message: "User already exists"})
     }
     
@@ -33,16 +35,18 @@ router.post("/sign-up", async (req, res) => {
     const newUser ={...body}
     console.log(newUser)
    
-    const updatedDB = getAllUsers()
-    updatedDB.push(newUser)
-    console.log(updatedDB)
-    saveUser(updatedDB)
-    res.send(getAllUsers())
+    const updateDB = await db.run(`INSERT INTO users(name, email, password) VALUES (?,?,?) `,[body.name, body.email, body.password])
+    console.log(updateDB.changes)
+    const DATA = await db.all("SELECT * FROM users")
+    res.send(DATA)
 })
 
-router.post("/login", async (req,res) => {
-    if(!checkUserExists(req.body.email)){
-        res.send({message: "User not found"})
+router.post("/api/login", async (req,res) => {
+    const body = req.body
+    const dbEmail = await db.get(`SELECT email FROM users WHERE email = ?`, body.email) || ""
+    console.log(dbEmail.email)
+    if(dbEmail.email !== body.email){
+        return res.send({message: "User does not exists"})
     }
 
     const user = findUserByEmail(req.body.email)
