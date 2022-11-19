@@ -4,9 +4,3 @@ export function checkIfLoginSession( req, res, next){
         res.send({message: "You are not allowed in here"})
     }  
 }
-
-export function setLoginSession(req, res, next){
-    if(!req.session.loggedIn){
-        req.session.loggedIn = true
-    }
-}

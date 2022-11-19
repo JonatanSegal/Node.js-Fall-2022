@@ -1,12 +1,14 @@
 import dotenv from "dotenv"
 dotenv.config()
+
 import express from "express"
+const app = express()
+
 import rateLimit from 'express-rate-limit'
 import session from "express-session"
 import helmet from "helmet"
-
-const app = express()
-
+import cors from "cors"
+app.use(cors())
 app.use(express.json())
 app.use(helmet())
 app.use(session({
@@ -15,6 +17,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false }
   }))
+
 const generalLimiter = rateLimit({
     windowMs: 10 * 60 * 1000,
     max: 80,
@@ -28,6 +31,7 @@ const loginLimit = rateLimit({
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
 */
+
 import authRouter from "./routers/authRouter.js"
 app.use(authRouter)
 
