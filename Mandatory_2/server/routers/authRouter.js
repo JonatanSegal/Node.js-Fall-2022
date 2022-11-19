@@ -1,7 +1,7 @@
 import { Router } from "express"
 import db from "../database/connection.js"
 import bcrypt from "bcrypt"
-import { checkIfLoginSession } from "../services/sessionService.js"
+import { signUpMail } from "../services/emailService.js"
 import session from "express-session"
 
 const saltRounds = 12
@@ -42,7 +42,11 @@ router.post("/api/sign-up", async (req, res) => {
         
             const updateDB = await db.run(`INSERT INTO users(name, email, password) VALUES (?,?,?) `,[body.name, body.email, body.password])
             console.log(updateDB.changes)
-            res.status(200).send({Changes: updateDB.changes})
+            signUpMail(body.email, body.name)    
+            .then(result => {
+                console.log(result)
+                res.status(200).send({Changes: updateDB.changes, Link: result})})
+            .catch(console.error)
         }
         else{
             console.log(result.email)

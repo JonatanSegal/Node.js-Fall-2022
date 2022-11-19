@@ -1,3 +1,4 @@
+//TO BE DELETED
 import fs from "fs"
 import db from "../database/connection.js"
 const DATABASE = "./util/fakeDB.json"
