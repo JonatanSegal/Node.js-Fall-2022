@@ -6,15 +6,13 @@
 </script>
 
 <Router>
-  <div>
-    <Route path="/"><Home/></Route>
-  </div>
   <nav>
     <Link to="/">Home</Link>
     <Link to="/signup">Signup</Link>
     <Link to="/login">login</Link>
   </nav>
   <div>
+    <Route path="/"><Home/></Route>
     <Route path="/signup"><Signup/></Route>
     <Route path="/login"><Login/></Route>
   </div>
