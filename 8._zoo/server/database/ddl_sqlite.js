@@ -1,4 +1,4 @@
-import db from "./connecttion_sqlite.js"
+import db from "./connection_sqlite.js"
 
 // taks Define a table the contains animals
 const isInDeleteMode = true
