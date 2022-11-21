@@ -18,7 +18,10 @@ router.get("/api/login", (req, res) => {
 })
 
 router.get("/api/authorized", (req, res ) => {   
-    res.send({message: "Welcome to the secret page only for logged in members"})
+    if(req.session.loggedIn !== true){
+        return res.send({message: "You are not logged in stay away"})
+    }
+        res.send({message: "Welcome to the secret page only for logged in members"})
 })
 
 //POST - Sign up new user
@@ -82,7 +85,7 @@ router.post("/api/login", async (req,res) => {
             if(passwordComparison  === true){
                 req.session.loggedIn = true
                 console.log(req.session)
-                res.sendStatus(200)
+                res.sendStatus(200).send("You are logged in")
             }
             else {
                 res.sendStatus(401).send("Passwords didn't match")

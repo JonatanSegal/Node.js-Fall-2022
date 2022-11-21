@@ -14,7 +14,10 @@ app.use(cors())
 
 import animalsRouter from "./routers/animalsRouter.js"
 app.use(animalsRouter)
-
+import animalFeedTypesRouter from "./routers/animalFeedTypesRouter.js";
+app.use(animalFeedTypesRouter);
+import animalFeedStockRouter from "./routers/animalFeedStockRouter.js";
+app.use(animalFeedStockRouter);
 
 const PORT = 8080 || process.env.PORT
 app.listen(PORT, () =>console.log("App is running on: ", PORT) )

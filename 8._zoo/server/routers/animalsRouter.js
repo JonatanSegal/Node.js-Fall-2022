@@ -1,7 +1,7 @@
 import {Router} from "express"
 const router = Router()
 
-import db from "../database/connecttion_sqlite.js"
+import db from "../database/connection_sqlite.js"
 
 //const animals = ["🐒", "🦝", "🐼", "🦦"]
 
