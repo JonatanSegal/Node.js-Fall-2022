@@ -26,8 +26,8 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  display: fixed;
+  /*place-items: center;*/
   min-width: 320px;
   min-height: 100vh;
 }
@@ -78,4 +78,23 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.link-item {
+  padding-left: 6px;
+  padding-right: 6px;
+  float: left;
+  margin: 7px;
+  font-size: 20px;
+  vertical-align: middle;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(202, 159, 238);
+}
+ul#menu li{
+  display : inline;
 }

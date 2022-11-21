@@ -18,10 +18,10 @@ router.get("/api/login", (req, res) => {
 })
 
 router.get("/api/authorized", (req, res ) => {   
-    if(req.session.loggedIn !== true){
-        return res.send({message: "You are not logged in stay away"})
+    if(req.session.isLoggedIn !== true){
+        return res.status(401).send({message: "You are not logged in stay away"})
     }
-        res.send({message: "Welcome to the secret page only for logged in members"})
+        res.status(200).send({message: "Welcome to the secret page only for logged in members"})
 })
 
 //POST - Sign up new user
@@ -83,7 +83,7 @@ router.post("/api/login", async (req,res) => {
             const passwordComparison = await bcrypt.compare(loginPassword, encryptedpassword)
             
             if(passwordComparison  === true){
-                req.session.loggedIn = true
+                req.session.isLoggedIn = true
                 console.log(req.session)
                 res.sendStatus(200).send("You are logged in")
             }
