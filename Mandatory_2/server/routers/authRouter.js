@@ -17,6 +17,12 @@ router.get("/api/login", (req, res) => {
     res.send({message: "You are about to login"})
 })
 
+router.get('/api/logout', (req, res) => {
+    req.session.isloggedIn = false
+    req.session.destroy();
+    res.sendStatus(200)
+})
+
 router.get("/api/authorized", (req, res ) => {   
     if(req.session.isLoggedIn !== true){
         return res.status(401).send({message: "You are not logged in stay away"})
