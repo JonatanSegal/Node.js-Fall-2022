@@ -23,7 +23,6 @@
              })
 
              if(response.status === 429) {
-                console.log("Too many login attempts")
                 toast.push("Too many login attempts", {
                     theme: {
                         '--toastColor': 'white',
@@ -34,7 +33,6 @@
                 return
             }
             else if(response.status !== 200) {
-                console.log("Couldn't log in")
                 toast.push("Wrong email or password", {
                     theme: {
                         '--toastColor': 'white',

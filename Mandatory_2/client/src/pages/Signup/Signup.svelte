@@ -9,8 +9,23 @@
     let email = ""
     let password = ""
 
+    function containsNumbers(str){
+        return /[0-9]/.test(str)
+    }
+
     async function signUp(){
     if(name !== "" && email !== "" && password !== ""){
+        if(password.length < 5 || containsNumbers(password) !== true){
+            toast.push('Password must be 5 characters and have at least 1 number',{
+                theme: {
+                        '--toastColor': 'white',
+                        '--toastBackground': '#a60202',
+                        '--toastBarBackground': '#570404'
+                    },
+                duration: 6000        
+            })
+            return
+        }
 
         const response = await fetch(`${$BASE_URL}/api/sign-up`,{
             method: "POST",

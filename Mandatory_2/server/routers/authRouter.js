@@ -2,7 +2,7 @@ import { Router } from "express"
 import db from "../database/connection.js"
 import bcrypt from "bcrypt"
 import { signUpMail } from "../services/emailService.js"
-import session from "express-session"
+import { containsNumbers } from "../services/passwordService.js"
 
 const saltRounds = 12
 const router = Router()
@@ -36,29 +36,23 @@ router.post("/api/sign-up", async (req, res) => {
     if (!body.name) return res.status(400).send({ message: "Name not defined" })
     if (!body.email) return res.status(400).send({ message: "Email not defined" })
     if (!body.password) return res.status(400).send({ message: "Password not defined" })
+    if(body.password.length < 5 || containsNumbers(body.password) !== true) return res.status(400).send({message: "Password must be 5 characters and contain 1 number"})
    
     try{
         const result = await db.get(`SELECT * FROM users WHERE email = ?`, body.email)
         
         if(result === undefined){             
             const encryptedpassword = await bcrypt.hash(body.password, saltRounds)
-            console.log(encryptedpassword)
             body.password = encryptedpassword
-        
-            const newUser ={...body}
-            console.log(newUser)
         
             const updateDB = await db.run(`INSERT INTO users(name, email, password) VALUES (?,?,?) `,[body.name, body.email, body.password])
             console.log(updateDB.changes)
             signUpMail(body.email, body.name)    
             .then(result => {
-                console.log(result)
                 res.status(200).send({Link: result})})
             .catch(console.error)
         }
         else{
-            console.log(result.email)
-
             if(result.email === body.email){
                 return res.status(403).send({message: "User already exists"})
             }
@@ -71,16 +65,14 @@ router.post("/api/sign-up", async (req, res) => {
 //POST - Login
 router.post("/api/login", async (req,res) => {
     const body = req.body
+    if (!body.email) return res.status(400).send({ message: "Email not defined" })
+    if (!body.password) return res.status(400).send({ message: "Password not defined" })
 
-    if(!body.email || !body.password || body.email === "" || body.password === ""){
-        res.sendStatus(401)
-    }
     try{
         const result = await db.get(`SELECT * FROM users WHERE email = ?`, body.email)
         
         if(result === undefined){
-            res.sendStatus(401)
-            console.log("result was undefined")
+            return res.sendStatus(404).send({message: "User not found"})
         }
         else{
             const encryptedpassword = result.password
@@ -89,18 +81,15 @@ router.post("/api/login", async (req,res) => {
             
             if(passwordComparison  === true){
                 req.session.isLoggedIn = true
-                console.log(req.session)
-                res.sendStatus(200).send("You are logged in")
+                return res.sendStatus(200).send({message: "You are logged in"})
             }
             else {
-                res.sendStatus(401).send("Passwords didn't match")
+                return res.sendStatus(401).send({message: "Passwords didn't match"})
             }
         }
     }catch{
         console.error()
     }
 })
-
-
 
 export default router
