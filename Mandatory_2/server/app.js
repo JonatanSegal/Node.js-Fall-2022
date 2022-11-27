@@ -8,7 +8,7 @@ import rateLimit from 'express-rate-limit'
 import session from "express-session"
 import helmet from "helmet"
 import cors from "cors"
-app.use(cors())
+app.use(cors({ credentials: true, origin: true }))
 app.use(express.json())
 app.use(helmet())
 app.use(session({
@@ -21,16 +21,17 @@ app.use(session({
 const generalLimiter = rateLimit({
     windowMs: 10 * 60 * 1000,
     max: 80,
-})
-app.use(generalLimiter)
-/*
-const loginLimit = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 5, // Limit each IP to 5 requests per `window` (here, per 15 minutes)
-	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
-*/
+app.use(generalLimiter)
+
+const loginLimit = rateLimit({
+	windowMs: 5 * 60 * 1000, // 5 minutes
+	max: 5, // 5 requests per 5 minutes
+})
+app.use("/api/login", loginLimit)
+
 
 import authRouter from "./routers/authRouter.js"
 app.use(authRouter)

@@ -54,14 +54,14 @@ router.post("/api/sign-up", async (req, res) => {
             signUpMail(body.email, body.name)    
             .then(result => {
                 console.log(result)
-                res.status(200).send({Changes: updateDB.changes, Link: result})})
+                res.status(200).send({Link: result})})
             .catch(console.error)
         }
         else{
             console.log(result.email)
 
             if(result.email === body.email){
-                return res.status(400).send({message: "User already exists"})
+                return res.status(403).send({message: "User already exists"})
             }
         }
     }catch{
