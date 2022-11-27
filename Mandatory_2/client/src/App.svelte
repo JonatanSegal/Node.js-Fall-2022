@@ -7,34 +7,20 @@
   import Login from "./pages/Login/Login.svelte";
   import Home from "./pages/Home/Home.svelte";
   import Secret from "./pages/Secret/Secret.svelte";
-  
   import logo from "./imgs/fish.png";
-    import { onMount } from "svelte";
   
   function logOut() {
     fetch(`${$BASE_URL}/api/logout`, {
       credentials: "include"
       })
+      IS_LOGGED_IN.set(false)
       console.log("Log out pressed")
       toast.push("Logged out")
-      IS_LOGGED_IN.set(false)
   }
-  async function loginCheck(){
-    const response = await fetch(`${$BASE_URL}/api/authorized`,{
-        method: "GET",
-        credentials: "include"
-    })
-    if(response.status === 200 ){
-        return IS_LOGGED_IN.set(true)
-    }else{
-      IS_LOGGED_IN.set(false)
-    }
-  }
-  onMount(loginCheck)
 </script>
 
 <Router>
-  <nav>
+  <nav class="navbar">
     <ul id="menu">
       <span class="nav-logo">
         <Link to="/"><img id="logo" src={logo} alt="logo"></Link>
@@ -79,8 +65,8 @@
 
 <style>
 img#logo {
-    width: 42px;
-    height: 42px;
+    width: 80px;
+    height: 80px;
     padding-right: 10px;
     float:left;
     display: inline;

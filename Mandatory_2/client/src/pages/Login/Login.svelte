@@ -27,7 +27,7 @@
                 toast.push("Too many login attempts", {
                     theme: {
                         '--toastColor': 'white',
-                        '--toastBackground': 'red',
+                        '--toastBackground': '#a60202',
                         '--toastBarBackground': '#570404'
                 } 
                 })
@@ -38,14 +38,14 @@
                 toast.push("Wrong email or password", {
                     theme: {
                         '--toastColor': 'white',
-                        '--toastBackground': 'red',
+                        '--toastBackground': '#a60202',
                         '--toastBarBackground': '#570404'
                 }
                 })
                 return
             }
-            toast.push("Login successful")
             IS_LOGGED_IN.set(true)
+            toast.push("Login successful")
             navigate("/", { replace: false }); 
          
         }       
@@ -55,7 +55,7 @@
             toast.push('Email and password required', {
                 theme: {
                     '--toastColor': 'white',
-                    '--toastBackground': 'red',
+                    '--toastBackground': '#a60202',
                     '--toastBarBackground': '#570404'
                 },
                 duration: 6000     

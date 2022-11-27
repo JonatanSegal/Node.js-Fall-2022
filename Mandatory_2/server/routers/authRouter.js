@@ -17,8 +17,8 @@ router.get("/api/login", (req, res) => {
     res.send({message: "You are about to login"})
 })
 
-router.get('/api/logout', (req, res) => {
-    req.session.destroy();
+router.get("/api/logout", (req, res) => {
+    req.session.isLoggedIn = false
     res.sendStatus(200)
 })
 

@@ -29,7 +29,7 @@
             toast.push("User already exists", {
                 theme: {
                     '--toastColor': 'white',
-                    '--toastBackground': 'red',
+                    '--toastBackground': '#a60202',
                     '--toastBarBackground': '#570404'
                 }    
             })
@@ -50,7 +50,7 @@
             toast.push('A name, email and password is required. Please make sure the fields are filled out', {
                 theme: {
                         '--toastColor': 'white',
-                        '--toastBackground': 'red',
+                        '--toastBackground': '#a60202',
                         '--toastBarBackground': '#570404'
                     },
                 duration: 6000        
@@ -61,7 +61,7 @@
 </script>
 
 <h2>Sign up</h2>
-<h3><i>Looks like there is guide here to help you defeat the dragon all you have to do is fill out the form</i></h3>
+<h3><i>Look there is guide here to help you defeat the dragon, all you have to do is fill out this form</i></h3>
 
 <div class="form-container">
 <img id="guide-girl" src={girl} alt="guide-girl">
