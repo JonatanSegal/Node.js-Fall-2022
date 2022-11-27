@@ -18,7 +18,6 @@ router.get("/api/login", (req, res) => {
 })
 
 router.get('/api/logout', (req, res) => {
-    req.session.isloggedIn = false
     req.session.destroy();
     res.sendStatus(200)
 })

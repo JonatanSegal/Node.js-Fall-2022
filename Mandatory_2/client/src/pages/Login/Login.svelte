@@ -83,7 +83,7 @@
             Password <input type="password" name="password" id="password-id" required bind:value={password} />
         </label>
 
-        <button type="submit" on:click|preventDefault={isFieldsEmpty}> Login </button>
+        <button type="submit" on:click={isFieldsEmpty}> Login </button>
     </form>
 </div>
 

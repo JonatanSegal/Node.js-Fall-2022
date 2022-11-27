@@ -9,6 +9,7 @@
   import Secret from "./pages/Secret/Secret.svelte";
   
   import logo from "./imgs/fish.png";
+    import { onMount } from "svelte";
   
   function logOut() {
     fetch(`${$BASE_URL}/api/logout`, {
@@ -18,6 +19,18 @@
       toast.push("Logged out")
       IS_LOGGED_IN.set(false)
   }
+  async function loginCheck(){
+    const response = await fetch(`${$BASE_URL}/api/authorized`,{
+        method: "GET",
+        credentials: "include"
+    })
+    if(response.status === 200 ){
+        return IS_LOGGED_IN.set(true)
+    }else{
+      IS_LOGGED_IN.set(false)
+    }
+  }
+  onMount(loginCheck)
 </script>
 
 <Router>
@@ -48,7 +61,7 @@
       {:else}
       <span class="link-item">
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <Link to=""on:click={logOut}>Log out</Link>
+        <Link to="/" on:click={logOut}>Log out</Link>
       </span>
       {/if}
   </ul>
