@@ -1,6 +1,6 @@
 import {MongoClient} from "mongodb"
 
-//27017              :// protocol indicator
+//Default port 27017              :// protocol indicator
 const url = "mongodb://127.0.0.1:27017"
 
 const client = new MongoClient(url)
